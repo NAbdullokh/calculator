@@ -1,14 +1,59 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import './App.css'
 
 const App = () => {
   const [preState, setPreState] = useState('')
   const [curState, setCurState] = useState('')
   const [input, setInput] = useState('0')
+  const [operator, setOperator] = useState(null)
+  const [total, setTotal] = useState(false)
+
+  const inputNum = e => {
+    if (curState.includes('.') && e.target.innerText === '.') return 
+
+    if (total) {
+      setPreState('')
+    }
+
+    curState ? setCurState(pre => pre + e.target.innerText) : setCurState(e.target.innerText)
+    setTotal(false)
+
+  }
+
+  useEffect(() => {
+    setInput(curState)
+  }, [curState])
+
+  useEffect(() => {
+    setInput('0')
+  },[])
+
+  const operatorType = e => {
+    
+  }
+
+  const equals = e => {
+    
+  }
+
+  const minusPlus = e => {
+    
+  }
+
+  const reset = e => {
+    
+  }
+
+  const persent = e => {
+    
+  }
+
   return (
     <div className="container">
       <div className="wrapper">
-        <div className="screen"></div>
+        <div className="screen">{input}</div>
         <div className="btn light-gray" onClick={reset}>AC</div>
         <div className="btn light-gray" onClick={persent}>%</div>
         <div className="btn light-gray" onClick={minusPlus}>+/-</div>
